@@ -152,7 +152,7 @@ ssh: connect to host 192.168.1.1 port 22: Connection timed out
 
 ![Схема сети с дополнительным шлюзом](MyNetworks.drawio3.png)
 
-На виртуальном хосте _centralServer_ установим и запустим _Nginx_ и пробросим его порт _80_ на виртуальный хост _inetRouter2_ на порту _8080_, для этого создадим следующие
+На виртуальном хосте _centralServer_ установим и запустим _Nginx_ и пробросим его порт _80_ на виртуальный хост _inetRouter2_ на порт _8080_. Для этого создадим следующие
 правила на _inetRouter2_:
 ```
       iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 192.168.2.2:80
