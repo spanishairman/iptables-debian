@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
       iptables -A INPUT ! -s 192.168.1.2 -p tcp -m tcp --dport 22 -j ACCEPT
       # Откроем ICMP ping
       iptables -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
-      # Все входящие соединения, которые ранее не попали ни под одно правило, отправляются в таблицу KNOCKING.
+      # Все входящие соединения, которые ранее не попали ни под одно правило, отправляются в цепочку KNOCKING.
       iptables -A INPUT -j KNOCKING
       # Если IP-адрес источника находится в списке knockfinal (но не более 60 сек.), то пропустить его
       iptables -A KNOCKING -m state --state NEW -p tcp -m tcp --dport 22 -m recent --rcheck --seconds 60 --reap --name knockfinal -j ACCEPT
